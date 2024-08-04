@@ -1,0 +1,120 @@
+@media screen and (max-width: 1000px) {
+    body {
+      .box{
+        width:330px;
+        height:500px;
+        position: absolute;
+        top: 50%;
+        left:50%;
+        box-sizing: border-box;
+        padding: 60px 30px;
+        transform: translate(-50%,-50%);
+      }
+      .last{
+        margin-left: 10px;
+      }
+      a{
+        margin-right: 10px;
+      }
+    }
+  }
+body{
+    margin: 0;
+    padding: 0;
+    background: url('../images/login\ wall\ 2.jpg') no-repeat center fixed;
+    -webkit-background-size : over;
+    -moz-background-size : cover;
+    -o-background-size : cover;
+    font-family: sans-serif;
+
+}
+.box{
+    background-color: white;
+    color:red;
+    width:310px;
+    height:500px;
+    
+    position: absolute;
+    top: 50%;
+    left:20%;
+    box-sizing: border-box;
+    padding: 60px 30px;
+    transform: translate(-50%,-50%);
+
+
+}
+.old{
+    height: 100px;
+    width: 110px;
+    position: absolute;
+    top:-50px;
+    left:calc(50% - 57px);
+    
+}
+
+h1{
+    text-align: center;
+    color: black;
+    font-weight:bolder;
+    font-size: 24px;
+    padding: 0px;
+}
+p{
+    color: orangered;
+    font-weight:bold ;
+    font-size:18px ;
+}
+
+input{
+    border:none;
+    width:150px;
+    border-bottom: 20px;
+}
+input[type="text"],input[type="password"],input[type="email"]
+{
+    border:none;
+    outline:none;
+    background:transparent;
+    height:40px;
+    
+    border-bottom:1px solid white;
+    color:#BCBCBC;
+    font-size:16px;
+}
+input[type="submit"]{
+
+    color:white;
+    background-color: #3B9DEE;
+    font-size: 20px;
+    width:248px;
+    text-align: center;
+    height:40px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    
+}
+input[type="submit"]:hover
+{
+    cursor: pointer;
+    background-color: #FFE400;
+}
+a{
+    text-decoration: none;
+    color:green;
+    padding-top: 40px;
+    text-align: center;
+    font-size: medium;
+    position: absolute;
+    top:79%;
+    right:60px;
+}
+
+#error
+{
+    color: red;
+    position: absolute;
+    top:65%;
+    
+  
+}
