@@ -23,6 +23,9 @@ Step 1 : Run backend server
 Step 2 : Run Frontend 
          Type npm start
 
+Check the Authentication by register new user and click collection and Open in new tap.
+It will showed.
+
          ---------------------
                THAT'S IT
          ---------------------
