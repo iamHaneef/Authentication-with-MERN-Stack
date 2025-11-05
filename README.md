@@ -7,11 +7,11 @@ Problem 1 : Server connectivity Problem
 
 Solution : 
           Type Control Panel in search and tap
-          click System and Security
-          click Windows Tools
-          click Services
-          Check mongoDB server and make assure is it ( automatic and Service Status -> start ).
-          If it is stop and make it start and Running.
+          -> click System and Security
+          -> click Windows Tools
+          -> click Services
+          -> Check mongoDB server and make assure is it ( automatic and Service Status -> start ).
+          -> If it is stop and make it start and Running.
 
 
 This was the biggest error in it after handing this.
