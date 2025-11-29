@@ -1,86 +1,151 @@
-const  express=require("express");
-const mongoose=require("mongoose");
-const cors=require("cors");
-const app=express();
-const collection=require("./mongo")
+// immport all important dependencies:
+const express = require("express");
+const cors = require("cors");
+const collections = require("./mongo");
 
-// Middleware setup
-app.use(express.json())
-app.use(cors())
+const app = express();
 
+app.use(express.json());
+app.use(cors());
 
-// GET request handler (just an example, not performing any operation)
-
-app.get("/",(req,res)=>{
-    res.send("Hello world !");
-})
-// POST request handler for login
-app.post("/", async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const check = await collection.findOne({ email: email });
-
-        if (check) {
-            res.json("exist");
-        } else {
-            res.json("notexist");
-        }
-    } catch (error) {
-        res.status(500).json("notexist");
-    }
+// GET METHOD
+app.get("/" , (req,res) => {
+  res.send("READ ALL DATAS");
 });
 
-// POST request handler for registration
+// POST METHOD -- REGISTER 
+app.post("/register" , async(req,res) => {
 
-app.post("/register", async (req, res) => {
-    const { email, password } = req.body;
-
-    const newUser = {
-        email: email,
-        password: password
-    };
-
-    try {
-        const check = await collection.findOne({ email: email });
-
-        if (check) {
-            res.json("exist");
-        } else {
-            await collection.insertMany([newUser]);
-            res.json("notexist");
-        }
-    } catch (error) {
-        res.status(500).json("notexist");
-    }
-});
-
-// Start the server //for localhost
-app.listen(8000,()=>{
-    console.log("server started")
-})
-
-
-/*
-app.post("/register",asyn(req,res)=>
-{
-    const{email,password}=req.body;
-
-    const data={
-        email:email,
-        password:password
-    }
+    const {email , password} = req.body; // from frontend
+    const newUser = { email , password };
 
     try{
-        const check= await collection.findOne({email:email})
-        
-        if(check)
-        {
-            res.json("exists")
-        }
-        else{
-            res.json("notexists");
-            await collection.insertMany([data])
-        }
-    } 
-}) */
+      const check = await collections.findOne({email : email});
+      if(check)
+      {
+        res.json("Exists");
+      }
+      else
+      {
+        await collections.insertMany([newUser]);
+        res.json("Not Exists");
+      }
+    }
+    catch(error)
+    {
+      res.status(500).json("not exists");
+    }
+});
+
+
+// POST METHOD -- LOGIN
+app.post("/login"  , async(req,res) => {
+
+  const {email , password} = req.body;
+
+  try{
+    const check = await collections.findOne({ email : email});
+
+    if(check){
+      res.json("EXISTS");
+    }
+    else{
+      res.json("NOT EXISTS");
+    }
+  }
+
+  catch(err)
+  {
+    res.status(500).json("NOT EXISTS IN SERVER");
+  }
+
+});
+
+// crud opration - get , post , put , delete:
+
+// create a user
+
+app.post("/users" , async(req,res) => {
+  
+    const {email , password} = req.body ;
+    const newUser = {email , password};
+
+      try{
+        const user = await collections.create([newUser]);
+        res.json(user);
+      }
+
+      catch(err)
+      {
+        res.status(400).json("IT DIDN'T CREATE USER");
+      }
+
+});
+
+// read the user
+
+app.get("/users" , async(req , res) => {
+
+  try{
+    const user =  await collections.find();
+    res.json(user);
+  }
+
+  catch(err)
+  {
+     res.status(400).json("IT DIDN'T READ USER");
+  }
+});
+
+// read one user by id
+
+app.get("/users/:id" , async(req , res) => {
+
+  try{
+    const user =  await collections.findById(req.params.id);
+    res.json(user);
+  }
+
+  catch(err)
+  {
+     res.status(400).json("IT DIDN'T READ that ONE USER");
+  }
+});
+
+// update the user by id :
+
+app.get("/users/:id" , async(req , res) => {
+
+  try{
+    const updated =  await collections.findByIdAndUpdate(req.params.id , req.body ,
+        {new : "true"}
+    );
+    res.json(updated);
+  }
+
+  catch(err)
+  {
+     res.status(400).json("IT DIDN'T UPDATE that ONE USER");
+  }
+});
+
+// DELETE the user by id :
+
+app.get("/users/:id" , async(req , res) => {
+
+  try{
+    const deleted =  await collections.findByIdAndDelete(req.params.id);
+    res.json(deleted);
+  }
+
+  catch(err)
+  {
+     res.status(400).json("IT DIDN'T DELETE that ONE USER");
+  }
+});
+
+// server start
+
+app.listen(8000 , ()=>{
+  console.log("SERVER START");
+});
