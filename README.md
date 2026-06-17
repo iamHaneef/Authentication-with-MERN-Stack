@@ -65,6 +65,27 @@ This repository also preserves the initial frontend-only authentication prototyp
 
 ---
 
+## 📈 Project Evolution
+
+### Phase 1 — Frontend Prototype
+
+A standalone authentication interface built using HTML, CSS, and JavaScript.
+
+```text
+frontend-prototype/
+├── assets/
+├── login.html
+├── register.html
+├── style.css
+└── script.js
+```
+
+### Phase 2 — MERN Authentication
+
+The project was extended into a full-stack authentication system using React, Express.js, and MongoDB.
+
+---
+
 ## ⚙️ How to Run
 
 ### Clone Repository
